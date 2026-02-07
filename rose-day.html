@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Rose Day Esha 🌹</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+    body {
+      background: linear-gradient(135deg, #ffd6e8, #ffeaf3);
+      overflow-x: hidden;
+      color: #b30047;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px) scale(0.98);
+      transition: opacity 2s ease, transform 2s ease;
+    }
+
+    .page.active { 
+      display: flex; 
+      opacity: 1; 
+      transform: translateY(0) scale(1);
+    }
+
+    .page.active { display: flex; }
+
+    h1 { font-size: 3rem; margin-bottom: 15px; }
+    h2 { font-size: 2rem; margin-bottom: 15px; }
+    p { font-size: 1.2rem; max-width: 700px; line-height: 1.6; }
+
+    .btn {
+      margin-top: 25px;
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 25px;
+      background: #ff4d88;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    .btn:hover { background: #e6005c; transform: scale(1.05); }
+
+    .rose-emoji, .bouquet {
+      font-size: 120px;
+      margin: 15px 0;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .girl-img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #ff4d88;
+      margin: 20px 0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Floating roses */
+    .rose {
+      position: absolute;
+      font-size: 24px;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh); }
+      100% { transform: translateY(110vh); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio id="bg-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="btn" style="position:fixed; bottom:20px; right:20px; z-index:999;" onclick="playMusic()">🎵 Play Music</button>
+
+
+  <!-- Page 1 -->
+  <div class="page active" id="page1">
+    <h1>Happy Rose Day 🌹</h1>
+    <h2>To My Beautiful Esha ❤️</h2>
+    <div class="rose-emoji">🌹</div>
+    <p>
+      On this special Rose Day, I want to tell you how special you are to me. 
+      Just like a rose, you make my life beautiful, colorful, and full of love.
+    </p>
+    <button class="btn" onclick="goToPage(2)">Open My Heart 💖</button>
+  </div>
+
+  <!-- Page 2 -->
+  <div class="page" id="page2">
+    <h1>For You, My Love 🌹</h1>
+
+    <!-- Replace src with her photo path -->
+    <img class="girl-img" src="esha.jpg" alt="Esha's Photo">
+
+    <h2 style="margin-top:10px;">This bouquet is for you 💐</h2>
+    <div class="bouquet">💐</div>
+
+    <p>
+      Dear Esha, 💕<br><br>
+      You are the reason behind my smile, my happiness, and my peace. 
+      Every moment spent with you feels magical, and your presence makes everything better. 
+      I feel lucky and grateful to have you in my life.
+    </p>
+
+    <button class="btn" onclick="goToPage(1)">Hold My Hand 🤍</button>
+    <button class="btn" onclick="goToPage(3)">Open My Heart 💖</button>
+  </div>
+
+  <!-- Page 3 -->
+  <div class="page" id="page3">
+    <h1>A Message From My Heart ❤️</h1>
+    <p>
+      My dearest Esha, you are the most beautiful part of my life. Your smile brightens my darkest days, and your kindness fills my heart with warmth. With you, even ordinary moments feel special, and every memory becomes precious. You inspire me to be a better person and to dream bigger. Your love gives me strength, peace, and endless happiness. I cherish every laugh, every conversation, and every little moment we share. Thank you for being you and for choosing me every day. I promise to always stand by your side, to support you, and to love you with all my heart. You are my today, my tomorrow, and my forever. 🌹
+    </p>
+    <button class="btn" onclick="goToPage(2)">Hold My Hand 🤍</button>
+  </div>
+  </div>
+
+  <script>
+    function goToPage(page) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(p => {
+        p.classList.remove('active');
+      });
+
+      setTimeout(() => {
+        document.getElementById('page' + page).classList.add('active');
+      }, 300);
+    }
+
+    function playMusic() {
+      const music = document.getElementById('bg-music');
+      music.play();
+    }
+
+    // Floating roses effect
+    for (let i = 0; i < 25; i++) {
+      const rose = document.createElement('div');
+      rose.classList.add('rose');
+      rose.innerHTML = '🌹';
+      rose.style.left = Math.random() * 100 + 'vw';
+      rose.style.animationDuration = (5 + Math.random() * 5) + 's';
+      rose.style.fontSize = (16 + Math.random() * 30) + 'px';
+      document.body.appendChild(rose);
+    }
+  </script>
+
+</body>
+</html>
